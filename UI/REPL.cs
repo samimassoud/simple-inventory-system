@@ -15,34 +15,50 @@ namespace SIMS.UI
         }
 
         public void Run()
+{
+    Console.WriteLine("Type 'help' to see available commands.");
+
+    while (true)
+    {
+        Console.Write("> ");
+        string? input = Console.ReadLine()?.Trim().ToLower();
+
+        if (string.IsNullOrWhiteSpace(input))
+            continue;
+
+        switch (input)
         {
-            while (true)
-            {
+            case "help":
                 Helpers.PrintMenu();
-                string? choice = Console.ReadLine();
-                switch (choice)
-                {
-                    case "1":
-                        Helpers.AddProduct(inventory);
-                        break;
-                    case "2":
-                        Helpers.ViewAllProducts(inventory);
-                        break;
-                    case "3":
-                        Helpers.EditProduct(inventory);
-                        break;
-                    case "4":
-                        Helpers.DeleteProduct(inventory);
-                        break;
-                    case "5":
-                        Helpers.SearchProduct(inventory);
-                        break;
-                    case "6":
-                        Console.WriteLine("Exiting...");
-                        return;
-                    default:
-                        Console.WriteLine("Invalid option. Please try again.");
-                        break;
+                break;
+
+            case "add":
+                Helpers.AddProduct(inventory);
+                break;
+
+            case "view":
+                Helpers.ViewAllProducts(inventory);
+                break;
+
+            case "edit":
+                Helpers.EditProduct(inventory);
+                break;
+
+            case "delete":
+                Helpers.DeleteProduct(inventory);
+                break;
+
+            case "search":
+                Helpers.SearchProduct(inventory);
+                break;
+
+            case "exit":
+                Console.WriteLine("Exiting...");
+                return;
+
+            default:
+                Console.WriteLine("Unknown command. Type 'help' to see available commands.");
+                break;
                 }
             }
         }

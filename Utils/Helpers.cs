@@ -7,15 +7,15 @@ namespace SIMS.Utils
     {
         public static void PrintMenu()
         {
-            Console.WriteLine("--- Inventory Management System ---");
-            Console.WriteLine("1. Add Product");
-            Console.WriteLine("2. View All Products");
-            Console.WriteLine("3. Edit a Product");
-            Console.WriteLine("4. Delete a Product");
-            Console.WriteLine("5. Search for a Product");
-            Console.WriteLine("6. Exit");
-            Console.WriteLine("-----------------------------------");
-            Console.Write("Select an option: ");
+            Console.WriteLine("--- Commands ---");
+            Console.WriteLine("add     - Add a product");
+            Console.WriteLine("view    - View all products");
+            Console.WriteLine("edit    - Edit a product");
+            Console.WriteLine("delete  - Delete a product");
+            Console.WriteLine("search  - Search for a product");
+            Console.WriteLine("help    - Show this menu");
+            Console.WriteLine("exit    - Exit application");
+            Console.WriteLine("----------------");
         }
 
         public static void AddProduct(Inventory inventory)
