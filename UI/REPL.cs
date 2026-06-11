@@ -35,7 +35,7 @@ namespace SIMS.UI
                         Helpers.DeleteProduct(inventory);
                         break;
                     case "5":
-                        // Implement Search Product
+                        Helpers.SearchProduct(inventory);
                         break;
                     case "6":
                         Console.WriteLine("Exiting...");

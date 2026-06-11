@@ -71,8 +71,7 @@ namespace SIMS.Utils
                 Console.WriteLine("Invalid input. Please try again.");
                 return;
             }
-            var products = inventory.GetProducts();
-            var product = products.Find(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            var product = FindProductByName(inventory, name);
             if (product == null)
             {
                 Console.WriteLine("Product not found.");
@@ -120,8 +119,7 @@ namespace SIMS.Utils
                 Console.WriteLine("Invalid input. Please try again.");
                 return;
             }
-            var products = inventory.GetProducts();
-            var product = products.Find(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            var product = FindProductByName(inventory, name);
             if (product == null)
             {
                 Console.WriteLine("Product not found.");
@@ -139,6 +137,31 @@ namespace SIMS.Utils
                 Console.WriteLine("Deletion cancelled.");
             }
         }
+
+        public static void SearchProduct(Inventory inventory)
+        {
+            Console.Write("Enter product name to search: ");
+            string? name = Console.ReadLine();
+            if (name == null)
+            {
+                Console.WriteLine("Invalid input. Please try again.");
+                return;
+            }
+            var product = FindProductByName(inventory, name);
+            if (product == null)
+            {
+                Console.WriteLine("Product not found.");
+                return;
+            }
+            Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}");
+        }
         
+
+        private static Product? FindProductByName(Inventory inventory, string name)
+        {
+            return inventory
+                .GetProducts()
+                .Find(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
     }
 }
