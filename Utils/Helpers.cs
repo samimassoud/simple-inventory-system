@@ -111,6 +111,34 @@ namespace SIMS.Utils
             product.UpdateQuantity(quantity);
             Console.WriteLine("Product updated successfully!");
         }
+
+        public static void DeleteProduct(Inventory inventory)
+        {
+            Console.Write("Enter product name to delete: ");
+            string? name = Console.ReadLine();
+            if (name == null)            {
+                Console.WriteLine("Invalid input. Please try again.");
+                return;
+            }
+            var products = inventory.GetProducts();
+            var product = products.Find(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            if (product == null)
+            {
+                Console.WriteLine("Product not found.");
+                return;
+            }
+            Console.Write($"Are you sure you want to delete '{product.Name}'? (y/n): ");
+            string? confirmation = Console.ReadLine();
+            if (confirmation?.ToLower() == "y")
+            {
+            inventory.GetProducts().Remove(product);
+            Console.WriteLine("Product deleted successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Deletion cancelled.");
+            }
+        }
         
     }
 }
