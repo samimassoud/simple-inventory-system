@@ -29,7 +29,7 @@ namespace SIMS.UI
                         Helpers.ViewAllProducts(inventory);
                         break;
                     case "3":
-                        // Implement Edit Product
+                        Helpers.EditProduct(inventory);
                         break;
                     case "4":
                         // Implement Delete Product

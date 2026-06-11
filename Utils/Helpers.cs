@@ -62,7 +62,55 @@ namespace SIMS.Utils
                 Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}");
             }
         }
+    public static void EditProduct(Inventory inventory)
+        {
+            Console.Write("Enter product name to edit: ");
+            string? name = Console.ReadLine();
+            if (name == null)
+            {
+                Console.WriteLine("Invalid input. Please try again.");
+                return;
+            }
+            var products = inventory.GetProducts();
+            var product = products.Find(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            if (product == null)
+            {
+                Console.WriteLine("Product not found.");
+                return;
+            }
+            Console.Write("Would you like to update the price? (y/n): ");
+            string? updatePrice = Console.ReadLine();
+            decimal price = product.Price;
+            if (updatePrice?.ToLower() == "y")
+            {
+                Console.Write("Enter new price: ");
+                string? priceInput = Console.ReadLine();
 
+                if (!decimal.TryParse(priceInput, out price))
+            {
+                Console.WriteLine("Invalid price. Please try again.");
+                return;
+            }
+            }
+
+            Console.Write("Would you like to update the quantity? (y/n): ");
+            string? updateQuantity = Console.ReadLine();
+            int quantity = product.Quantity;
+            if (updateQuantity?.ToLower() == "y")
+            {
+                Console.Write("Enter new quantity: ");
+                string? quantityInput = Console.ReadLine();
+
+                if (!int.TryParse(quantityInput, out quantity))
+            {
+                Console.WriteLine("Invalid quantity. Please try again.");
+                return;
+            }
+            }
+            product.UpdatePrice(price);
+            product.UpdateQuantity(quantity);
+            Console.WriteLine("Product updated successfully!");
+        }
         
     }
 }
