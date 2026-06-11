@@ -1,6 +1,7 @@
 using System;
 using SIMS.Models;
 using SIMS.Services;
+using SIMS.Utils;
 
 namespace SIMS.UI
 {
@@ -17,34 +18,32 @@ namespace SIMS.UI
         {
             while (true)
             {
-                Console.Write("Enter product name: ");
-                string? name = Console.ReadLine();
-                if (name == null)
+                Helpers.PrintMenu();
+                string? choice = Console.ReadLine();
+                switch (choice)
                 {
-                    Console.WriteLine("Invalid input. Please try again.");
-                    continue;
+                    case "1":
+                        Helpers.AddProduct(inventory);
+                        break;
+                    case "2":
+                        Helpers.ViewAllProducts(inventory);
+                        break;
+                    case "3":
+                        // Implement Edit Product
+                        break;
+                    case "4":
+                        // Implement Delete Product
+                        break;
+                    case "5":
+                        // Implement Search Product
+                        break;
+                    case "6":
+                        Console.WriteLine("Exiting...");
+                        return;
+                    default:
+                        Console.WriteLine("Invalid option. Please try again.");
+                        break;
                 }
-                Console.Write("Enter price: ");
-                string? priceInput = Console.ReadLine();
-
-                if (!decimal.TryParse(priceInput, out decimal price))
-                {
-                    Console.WriteLine("Invalid price. Please try again.");
-                    continue;
-                }
-
-                Console.Write("Enter quantity: ");
-                string? quantityInput = Console.ReadLine();
-
-                if (!int.TryParse(quantityInput, out int quantity))
-                {
-                    Console.WriteLine("Invalid quantity. Please try again.");
-                    continue;
-                }
-                Product product = new Product(name, price, quantity);
-                inventory.AddProduct(product);
-
-                Console.WriteLine("Product added!\n");
             }
         }
     }

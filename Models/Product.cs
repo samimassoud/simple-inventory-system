@@ -1,5 +1,5 @@
 namespace SIMS.Models;
-class Product
+public class Product
 {
     public string Name { get; private set; }
     public decimal Price { get; private set; }
@@ -10,5 +10,20 @@ class Product
         Name = name;
         Price = price;
         Quantity = quantity;
+    }
+
+    public void UpdatePrice(decimal newPrice)
+    {
+        Price = newPrice;
+    }
+
+    public void UpdateQuantity(int newQuantity)
+    {
+        Quantity = newQuantity;
+    }
+
+    public void UpdateName(string newName)
+    {
+        Name = newName;
     }
 }

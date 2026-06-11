@@ -3,7 +3,7 @@ namespace SIMS.Services;
 using SIMS.Models;
 using System.Collections.Generic;
 
-class Inventory
+public class Inventory
 {
     List<Product> products;
     public Inventory()
